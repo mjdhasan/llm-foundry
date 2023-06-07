@@ -2,7 +2,7 @@ max_seq_len: 512
 global_seed: 17
 
 # Run Name
-run_name: # If left blank, will be read from env var $RUN_NAME
+run_name: gpt2-finetuning # If left blank, will be read from env var $RUN_NAME
 
 # Model
 model:
@@ -87,9 +87,9 @@ callbacks:
 #   wandb: {}
 
 # Checkpoint to local filesystem or remote object store
-# save_interval: 500ba
-# save_num_checkpoints_to_keep: 1  # Important, this cleans up checkpoints saved to DISK
-# save_folder: ./{run_name}/checkpoints
+save_interval: 500ba
+save_num_checkpoints_to_keep: 1  # Important, this cleans up checkpoints saved to DISK
+save_folder: ./{run_name}/checkpoints
 # save_folder: s3://my-bucket/my-folder/{run_name}/checkpoints
 
 # Load from local filesystem or remote object store
