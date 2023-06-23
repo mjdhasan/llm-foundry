@@ -1,8 +1,13 @@
 sky check ## check which clouds are enabled
-sky status
+sky status ## check status of existing clusters
 sky exec sky-8a96-tanushreesharma my_task.yaml     # to use an existing cluster named sky-8a96-tanushreesharma
-sky launch -c cluster_name my_task.yaml --retry-until-up     # to launch a new cluster with specs given in my_task.yaml
-
+sky launch -c cluster_name my_task.yaml --retry-until-up   # to launch a new cluster with specs given in my_task.yaml
+sky launch -c cluster_name my_task.yaml --retry-until-up ## create a cluster named 'culster_name' to run the job specified in my_task.yaml
+sky stop cluster-id ## stop a cluster
+sky down cluster-id ## terminate a cluster
+sky launch -c cluster-id skypilot/yamls/falcon_finetuning.yaml ## launch cluster using a given .yaml file with a predifed cluster-id
+sky launch skypilot/yamls/generate_test.yaml ## launch cluster using a given .yaml file
+ssh clusder-id ## login to a cluster
 
 
 
