@@ -1,0 +1,27 @@
+resources:
+  accelerators: T4:1  # 1x NVIDIA V100 GPU
+
+num_nodes: 1  # Number of VMs to launch
+
+# Working directory (optional) containing the project codebase.
+# Its contents are synced to ~/sky_workdir/ on the cluster.
+workdir: .
+
+# Commands to be run before executing the job.
+# Typical use: pip install -r requirements.txt, git clone, etc.
+setup: |
+  sudo apt update
+  sudo apt upgrade
+  sudo apt install texlive texlive-full imagemagick
+  sudo locale-gen en_US.UTF-8
+  python -m venv llmfoundry-venv
+  source llmfoundry-venv/bin/activate
+  python3 -m pip install --upgrade pip
+  pip install -e ".[gpu]"
+  pip install mosaicml
+
+# Commands to run as a job.
+# Typical use: launch the main program.
+run: |
+  cd scripts/train
+  composer train.py finetune_example/gpt2-arc-easy.yaml
