@@ -19,6 +19,7 @@ setup: |
   source llmfoundry-venv/bin/activate
   pip install llm-foundry
   git clone https://github.com/mosaicml/llm-foundry.git
+  nvcc --version
 
 
 # Commands to run as a job.
