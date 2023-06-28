@@ -1,0 +1,30 @@
+resources:
+  accelerators: T4:1  # 1x NVIDIA T4 GPU
+
+num_nodes: 1  # Number of VMs to launch
+
+# Working directory (optional) containing the project codebase.
+# Its contents are synced to ~/sky_workdir/ on the cluster.
+workdir: .
+
+# Commands to be run before executing the job.
+# Typical use: pip install -r requirements.txt, git clone, etc.
+setup: |
+  docker pull mosaicml/composer
+  docker run -it --name composer mosaicml/composer:latest
+  sudo apt update
+  sudo apt upgrade
+  python3 -m venv llmfoundry-venv
+  pip install --upgrade pip
+  source llmfoundry-venv/bin/activate
+  pip install llm-foundry
+  pip install peft
+  git clone https://github.com/mosaicml/llm-foundry.git
+  nvcc --version
+
+
+# Commands to run as a job.
+# Typical use: launch the main program.
+run: |
+  cd llm-foundry/scripts/train
+  composer train.py finetune_example/mpt-7b-arc-easy--gpu.yaml
