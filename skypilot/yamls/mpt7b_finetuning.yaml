@@ -18,7 +18,8 @@ setup: |
   pip install --upgrade pip
   source llmfoundry-venv/bin/activate
   pip install -e ".[gpu]"
-  git clone https://github.com/mosaicml/llm-foundry.git
+  git clone https://github.com/mjdhasan/llm-foundry.git
+  git checkout dev
   nvcc --version
 
 
