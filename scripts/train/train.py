@@ -108,9 +108,12 @@ def main(cfg):
     reproducibility.seed_all(cfg.seed)
     dist.initialize_dist(get_device(None), timeout=cfg.dist_timeout)
 
+
+
     # Run Name
     if cfg.get('run_name') is None:
         cfg.run_name = os.environ.get('RUN_NAME', 'llm')
+
 
     # Get batch size info
     cfg = update_batch_size_info(cfg)

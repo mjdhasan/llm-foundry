@@ -9,6 +9,7 @@ model:
   name: hf_causal_lm
   pretrained_model_name_or_path: mosaicml/mpt-7b
   pretrained: true  # false: only use the architecture; true: initialize with pretrained weights
+  init_device: meta
   config_overrides:
     attn_config:
       attn_impl: triton
